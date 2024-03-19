@@ -19,7 +19,10 @@ export default createVuetify({
       dark: {
         colors: {
           background: "#000A0F",
-          card: "#001119"
+          card: "#001119",
+          header: "#00111A",
+          darkCard: "#00070A",
+          border: "#000204"
         }
       }
     }

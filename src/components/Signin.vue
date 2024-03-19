@@ -5,22 +5,12 @@
         src="../assets/image.svg"
       />
     </div>
-    <VCard class="w-25 pa-12 rounded-lg" color="card">
+    <VCard class="w-full max-w-[500px] pa-12 rounded-lg" color="card">
       <VCardTitle class="d-flex  justify-center mb-10">
-        Crie sua conta
+        Faça login
       </VCardTitle>
       <VForm>
         <VRow>
-          <VCol
-            cols="12"
-            md="12"
-          >
-            <VTextField 
-              variant="outlined"
-              label="Nome"
-              placeholder="Exemplo: Gabriel Ricco"
-            />
-          </VCol>
           <VCol
             cols="12"
             md="12"
@@ -46,7 +36,7 @@
             md="12"
           >
             <VBtn variant="outlined" color="red" class="w-100 px-4 py-7 d-flex rounded-lg">
-              Criar conta
+              Entrar
             </VBtn>
           </VCol>
 
@@ -55,7 +45,7 @@
             md="12"
           >
             <VBtn class="w-100" variant="text">
-              Já tenho conta
+              Criar uma conta
             </VBtn>
           </VCol>
         </VRow>
