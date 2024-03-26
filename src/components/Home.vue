@@ -1,18 +1,28 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-import { VCard, VDivider }  from 'vuetify/lib/components/index.mjs';
+import { ref, watch, onMounted } from 'vue';
+import { VCard }  from 'vuetify/lib/components/index.mjs';
 import { api } from '../api/data';
 import CardsList from './CardsList.vue'
 import Header from './Header.vue';
 import Footer from './Footer.vue';
 
-const refeicoesData = ref(api.filter(item => item.type === 'refeições'));
-const sobremesasData = ref(api.filter(item => item.type === 'sobremesas'));
-const bebidasData = ref(api.filter(item => item.type === 'bebidas'));
+const refeicoesData = ref()
+const sobremesasData = ref()
+const bebidasData = ref()
+
+const getAll = () => {
+  refeicoesData.value = api.filter(item => item.type === 'refeições')
+  sobremesasData.value = api.filter(item => item.type === 'sobremesas')
+  bebidasData.value = api.filter(item => item.type === 'bebidas')
+}
+
+onMounted(() => {
+  getAll()
+})
 </script>
 
 <template>
-  <Header />
+  <Header @novoPratoSalvo="getAll" />
 
   <main class="flex flex-col gap-12 items-center justify-center">
     <VCard color="card" class="flex justify-between w-[1120px] h-[260px] rounded-lg overflow-visible">
