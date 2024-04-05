@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { isAdmin } from '../api/data';
+import { isAdmin, order } from '../api/data';
 import New from './New.vue';
 import { useRouter } from 'vue-router'
 
@@ -40,15 +40,7 @@ const onNovoPratoSalvo = () => {
 
     <New v-if="isAdmin" @novoPratoSalvo="onNovoPratoSalvo" />
 
-    <VBtn
-      v-else
-      prepend-icon="mdi-table-chair"
-      variant="outlined"
-      color="red"
-      class="h-50"
-    >
-      pedidos
-    </VBtn>
+    <Order v-else />
 
     <VIcon
       @click="navigateSignup"

@@ -20,7 +20,10 @@ const todosIngredientes = [...new Set(api.map(item => item.ingredientes).flat())
 const todosTipos = [...new Set(api.map(item => item.type).flat())]
 
 const salvar = async () => {
-  api.push(formulario.value)
+  api.push({
+    ...formulario.value,
+    photo: `https://source.unsplash.com/featured/?food&random=${Math.random()}`
+  })
 
   emit('novoPratoSalvo')
   dialog.value = false

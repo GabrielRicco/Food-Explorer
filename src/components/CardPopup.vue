@@ -1,11 +1,34 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { VBtn, VCard, VDialog } from 'vuetify/lib/components/index.mjs';
-import { isAdmin } from '../api/data';
+import { isAdmin, order } from '../api/data';
 import Edit from './Edit.vue';
 
 const dialog = ref(false)
 const item = defineProps(['item'])
+
+  const add = (item) => {
+    item.quantity = (item.quantity || 0) + 1;
+  }
+
+  const remove = (item) => {
+    if (item.quantity > 0) {
+      item.quantity -= 1;
+    }
+  }
+
+  function addToOrder(itemToAdd) {
+    for (let i = 0; i < itemToAdd.quantity; i++) {
+      order.value.push({
+        ...itemToAdd,
+        quantity: 1
+      });
+    }
+
+    itemToAdd.quantity = 1;
+
+    dialog.value = false
+  }
 </script>
 
 <template>
@@ -53,14 +76,14 @@ const item = defineProps(['item'])
 
               <div v-else class="flex items-center gap-4">
                 <div class="flex gap-2">
-                  <VIcon icon="mdi-minus" />
+                  <VIcon @click="remove(item.item)" icon="mdi-minus" />
 
-                  <p>01</p>
+                  <p>{{ item.item.quantity }}</p>
 
-                  <VIcon icon="mdi-plus" />
+                  <VIcon @click="add(item.item)" icon="mdi-plus" />
                 </div>
 
-                <VBtn variant="outlined" color="red">
+                <VBtn @click="addToOrder(item.item)" variant="outlined" color="red">
                   incluir
                 </VBtn>
               </div>

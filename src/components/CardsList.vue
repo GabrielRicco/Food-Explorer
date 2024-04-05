@@ -1,12 +1,34 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 import { VIcon } from 'vuetify/lib/components/index.mjs';
 import CardPopup from './CardPopup.vue';
-import { isAdmin } from '../api/data';
+import { isAdmin, order } from '../api/data';
 import Edit from './Edit.vue';
 
   const showAll = ref(false);
   const props = defineProps(['items', 'type'])
+
+
+  const add = (item) => {
+    item.quantity = (item.quantity || 0) + 1;
+  }
+
+  const remove = (item) => {
+    if (item.quantity > 0) {
+      item.quantity -= 1;
+    }
+  }
+
+  function addToOrder(itemToAdd) {
+    for (let i = 0; i < itemToAdd.quantity; i++) {
+      order.value.push({
+        ...itemToAdd,
+        quantity: 1
+      });
+    }
+
+    itemToAdd.quantity = 1;
+  }
 
   const itemsToShow = computed(() => {
     if(props.items) {
@@ -17,6 +39,12 @@ import Edit from './Edit.vue';
   function toggleShowAll() {
     showAll.value = !showAll.value;
   }
+
+  onMounted(() => {
+    order.value.map(item => {
+      item.photo = 'https://source.unsplash.com/featured/?food'
+    })
+  })
 </script>
 
 <template>
@@ -40,14 +68,14 @@ import Edit from './Edit.vue';
 
           <div v-if="!isAdmin" class="flex items-center gap-4">
             <div class="flex gap-2">
-              <VIcon icon="mdi-minus" />
+              <VIcon @click="remove(item)" icon="mdi-minus" />
 
-              <p>01</p>
+              <p>{{ item.quantity }}</p>
 
-              <VIcon icon="mdi-plus" />
+              <VIcon @click="add(item)" icon="mdi-plus" />
             </div>
 
-            <VBtn variant="outlined" color="red">
+            <VBtn @click="addToOrder(item)" variant="outlined" color="red">
               incluir
             </VBtn>
           </div>
