@@ -13,7 +13,6 @@ declare module 'vue' {
     Edit: typeof import('./src/components/Edit.vue')['default']
     Footer: typeof import('./src/components/Footer.vue')['default']
     Header: typeof import('./src/components/Header.vue')['default']
-    HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     Home: typeof import('./src/components/Home.vue')['default']
     New: typeof import('./src/components/New.vue')['default']
     Order: typeof import('./src/components/Order.vue')['default']

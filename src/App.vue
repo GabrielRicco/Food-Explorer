@@ -1,6 +1,4 @@
 <script setup lang="ts">
-
-import Signin from './components/Signin.vue';
 import './style.css'
 </script>
 
