@@ -24,6 +24,6 @@ const api = [
   { title: "Caipirinha", desc: "Teste de caipirinha", price: 15.00, ingredientes: ["cachaça", "limão", "açúcar"], type: "bebidas", photo: "https://source.unsplash.com/random" },
 ]
 
-const isAdmin = true
+const isAdmin = false
 
 export { api, isAdmin }

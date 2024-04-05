@@ -1,11 +1,17 @@
 <script setup lang="ts">
 import { isAdmin } from '../api/data';
 import New from './New.vue';
+import { useRouter } from 'vue-router'
 
 const emit = defineEmits(['novoPratoSalvo'])
 
+const router = useRouter()
+
+const navigateSignup = () => {
+  router.push({ name: 'Signup' });
+}
+
 const onNovoPratoSalvo = () => {
-  // Propaga o evento para o componente Home
   emit('novoPratoSalvo');
 };
 
@@ -45,6 +51,7 @@ const onNovoPratoSalvo = () => {
     </VBtn>
 
     <VIcon
+      @click="navigateSignup"
       class="hover:scale-150 transition-transform cursor-pointer"
       icon="mdi-logout"
     />

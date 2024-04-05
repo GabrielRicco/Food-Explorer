@@ -1,3 +1,18 @@
+<script setup lang="ts">
+import { VBtn, VCard, VCardTitle, VCol, VContainer, VForm, VImg, VRow, VTextField } from 'vuetify/lib/components/index.mjs';
+import { useRouter } from 'vue-router'
+
+  const router = useRouter()
+
+  const navigateSignin = () => {
+    router.push({ name: 'Signin' });
+  };
+
+  const navigateHome = () => {
+    router.push({ name: 'Home' });
+  };
+</script>
+
 <template>
   <VContainer color="#001119" class="d-flex align-center justify-center h-screen ma-0 pa-0">
     <div class="w-50 d-flex align-center justify-center">
@@ -45,7 +60,7 @@
             cols="12"
             md="12"
           >
-            <VBtn variant="outlined" color="red" class="w-100 px-4 py-7 d-flex rounded-lg">
+            <VBtn @click="navigateHome"  variant="outlined" color="red" class="w-100 px-4 py-7 d-flex rounded-lg">
               Criar conta
             </VBtn>
           </VCol>
@@ -54,7 +69,7 @@
             cols="12"
             md="12"
           >
-            <VBtn class="w-100" variant="text">
+            <VBtn @click="navigateSignin"  class="w-100" variant="text">
               Já tenho conta
             </VBtn>
           </VCol>
@@ -63,9 +78,3 @@
     </VCard>
   </VContainer>
 </template>
-
-<script setup lang="ts">
-import { VBtn, VCard, VCardTitle, VCol, VContainer, VForm, VImg, VRow, VTextField } from 'vuetify/lib/components/index.mjs';
-
-  //
-</script>
