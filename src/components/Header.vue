@@ -19,6 +19,13 @@ const onNovoPratoSalvo = () => {
 
 <template>
   <header class="w-full h-full max-h-24 bg-[#00111A] flex items-center justify-center gap-32 mb-44">
+    <h1 @click="isAdmin = true" v-if="!isAdmin" class="flex justify-start hover:scale-105 hover:underline underline-offset-8 cursor-pointer font-bold transition-transform">
+      Admin
+    </h1>
+
+    <h1 @click="isAdmin = false" v-else class="flex justify-start hover:scale-105 hover:underline underline-offset-8 cursor-pointer font-bold transition-transform">
+      Usuário
+    </h1>
     <img
       v-if="isAdmin"
       class="w-52" 
